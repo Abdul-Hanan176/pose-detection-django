@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-7ljp)hrhsx4m6$s%fp48g8_o7pmlnfq8=4m=e-5!=37uia7wyx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "myproject.urls"
@@ -125,6 +126,10 @@ STATICFILES_DIRS = [
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # CORS settings (allow all for development; restrict in production)
 CORS_ALLOW_ALL_ORIGINS = True  # Or specify allowed origins
