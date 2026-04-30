@@ -1,0 +1,4 @@
+django
+ultralytics
+opencv-python
+pillow
